@@ -1,0 +1,2 @@
+class MalformedParamsError(Exception):
+    pass

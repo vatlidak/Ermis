@@ -1,0 +1,17 @@
+curl   -X GET http://vaggpc.cern.ch:8000/api/lbalias/list
+curl -k --negotiate  -X GET https://:@vaggpc.cern.ch/krb/api/lbalias/list
+curl -k  -X GET https://vaggpc.cern.ch/ldap/api/lbalias/list -u vatlidak
+
+
+curl  -H "Content-Type: application/json" -X POST -d '{"alias_name":"higgs-alias-5", "type":"external"}' -L http://vaggpc.cern.ch:8000/api/lbalias/add  
+curl -k --negotiate -H "Content-Type: application/json" -X POST -d '{"alias_name":"higgs-alias-2", "type":"external"}' -L https://:@vaggpc.cern.ch/krb/api/lbalias/add 
+curl -k  -H "Content-Type: application/json" -X POST -d '{"alias_name":"higgs-alias-3", "type":"external"}' -L https://vaggpc.cern.ch/ldap/api/lbalias/add  -u vatlidak
+
+curl -i -X DELETE   http://vaggpc.cern.ch:8000/api/lbalias/delete/higgs-alias-3
+curl -k --negotiate  -X DELETE   https://:@vaggpc.cern.ch/krb/api/lbalias/delete/higgs-alias-5
+curl -k   -X DELETE   https://vaggpc.cern.ch/ldap/api/lbalias/delete/higgs-alias-1 -u vatlidak
+
+
+curl -k  -H "Content-Type: application/json" -X PUT -d '{"type":"internal"}' -L http://vaggpc.cern.ch:8000/api/lbalias/update/higgs-alias-1
+curl -k --negotiate -H "Content-Type: application/json" -X PUT -d '{"type":"internal"}' -L https://:@vaggpc.cern.ch/krb/api/lbalias/update/higgs-alias-1
+curl -k  -H "Content-Type: application/json" -X PUT -d '{"type":"external"}' -L https://vaggpc.cern.ch/ldap/api/lbalias/update/higgs-alias-1 -u vatlidak
